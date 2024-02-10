@@ -1,0 +1,34 @@
+Sure, here are all the commands combined into a single bash script with a heading:
+
+```bash
+#!/bin/bash
+
+# Removing Docker from Ubuntu
+
+# Uninstall Docker Engine
+sudo apt-get purge docker-ce docker-ce-cli containerd.io
+
+# Remove Docker-related packages
+sudo apt-get autoremove --purge docker-ce docker-ce-cli containerd.io
+
+# Remove Docker directories
+sudo rm -rf /var/lib/docker
+sudo rm -rf /etc/docker
+sudo rm -rf /etc/systemd/system/docker.service.d
+
+# Remove Docker group
+sudo groupdel docker
+
+# Remove Docker configuration files
+sudo rm -rf ~/.docker
+sudo rm -rf /root/.docker
+
+# Remove Docker images and containers (optional)
+# docker rm -f $(docker ps -a -q)
+# docker rmi -f $(docker images -a -q)
+
+# Reboot the system
+sudo reboot
+```
+
+Save the above script into a file with a `.sh` extension (e.g., `remove_docker.sh`). Make the script executable using the command `chmod +x remove_docker.sh`. Then you can run the script using `./remove_docker.sh` in the terminal. Remember to proceed with caution, as this script will remove Docker and its associated components from your system.
